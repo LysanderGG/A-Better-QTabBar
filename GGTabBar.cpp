@@ -68,9 +68,11 @@ GGScrollableTabBar::GGScrollableTabBar(QWidget* parent)
     this->horizontalScrollBar()->setStyleSheet("QScrollBar {height:0px;}");
     this->horizontalScrollBar()->hide();
 
-    connect(m_pTabBar, SIGNAL(currentChanged(int)), this, SLOT(makeVisible(int)));
-    connect(m_pTabBar, SIGNAL(currentChanged(int)), this, SLOT(onCurrentChanged(int)));
-    connect(m_pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
+    connect(m_pTabBar, SIGNAL(currentChanged(int)),      this, SLOT(onCurrentChanged(int)));
+    connect(m_pTabBar, SIGNAL(tabCloseRequested(int)),   this, SLOT(onTabCloseRequested(int)));
+    connect(m_pTabBar, SIGNAL(tabMoved(int, int)),       this, SLOT(onTabMoved(int, int)));
+    connect(m_pTabBar, SIGNAL(tabBarClicked(int)),       this, SLOT(onTabBarClicked(int)));
+    connect(m_pTabBar, SIGNAL(tabBarDoubleClicked(int)), this, SLOT(onTabBarDoubleClicked(int)));
 }
 
 GGScrollableTabBar::~GGScrollableTabBar()
@@ -162,9 +164,12 @@ GGTabBarWidget::GGTabBarWidget(QWidget* parent)
     m_pMenuButton->hide();
     m_pMenuButton->setStyleSheet("QToolButton::menu-indicator { image: none; }"); //Remove the menu-indicator as there is an image already.
 
-    connect(m_pMenuButton, SIGNAL(clicked()), this, SLOT(displayMenu()));
-    connect(m_pScrollableTabBar, SIGNAL(currentChanged(int)), this, SLOT(onCurrentChanged(int)));
-    connect(m_pScrollableTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
+    connect(m_pMenuButton,       SIGNAL(clicked()),                this, SLOT(displayMenu()));
+    connect(m_pScrollableTabBar, SIGNAL(currentChanged(int)),      this, SLOT(onCurrentChanged(int)));
+    connect(m_pScrollableTabBar, SIGNAL(tabCloseRequested(int)),   this, SLOT(onTabCloseRequested(int)));
+    connect(m_pScrollableTabBar, SIGNAL(tabMoved(int, int)),       this, SLOT(onTabMoved(int, int)));
+    connect(m_pScrollableTabBar, SIGNAL(tabBarClicked(int)),       this, SLOT(onTabBarClicked(int)));
+    connect(m_pScrollableTabBar, SIGNAL(tabBarDoubleClicked(int)), this, SLOT(onTabBarDoubleClicked(int)));
 }
 
 GGTabBarWidget::~GGTabBarWidget() 

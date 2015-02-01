@@ -65,8 +65,8 @@ public:
     inline QString  tabText(int index) const { return m_pTabBar->tabText(index); }
 
 signals:
-    inline void currentChanged(int index);
-    inline void tabCloseRequested(int index);
+    void currentChanged(int index);
+    void tabCloseRequested(int index);
 
 public slots:
     inline void setCurrentIndex(int index) { m_pTabBar->setCurrentIndex(index); }
@@ -118,8 +118,8 @@ public:
     inline QString  tabText(int index) const { return m_pScrollableTabBar->tabText(index); }
 
 signals:
-    inline void currentChanged(int index);
-    inline void tabCloseRequested(int index);
+    void currentChanged(int index);
+    void tabCloseRequested(int index);
 
 public slots:
     inline void setCurrentIndex(int index) { m_pScrollableTabBar->setCurrentIndex(index); }

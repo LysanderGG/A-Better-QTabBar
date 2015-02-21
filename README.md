@@ -10,6 +10,12 @@ Added features:
 * Menu to list up the tabs instead of the default ugly arrow buttons.
 
 
+## Results
+
+![Scroll](http://imgur.com/hJEuOmS.gif)
+
+![Menu](http://i.imgur.com/w5oU0v7.gif)
+
 
 ## Classes details
 

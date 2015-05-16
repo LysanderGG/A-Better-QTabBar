@@ -5,6 +5,7 @@
 #include <QTabBar>
 #include <QToolButton>
 #include <QVariant>
+#include <QLineEdit>
 
 /* ------------------------------------------------------------------------- */
 
@@ -20,19 +21,32 @@
  */
 class GGTabBar : public QTabBar
 {
+    Q_OBJECT
 public:
     GGTabBar(QWidget* parent = nullptr);
     ~GGTabBar();
+    const static int iVerticalMargin;
+    const static int iHorizontalMargin;
 
     inline bool isDragging() { return m_bDragging; }
+
+signals:
+    void tabDoubleClicked(int);
 
 protected:
     virtual void mousePressEvent    (QMouseEvent* e);
     virtual void mouseMoveEvent     (QMouseEvent* e);
     virtual void mouseReleaseEvent  (QMouseEvent* e);
+    virtual void mouseDoubleClickEvent  (QMouseEvent* e);
 
 private:
     bool m_bDragging;
+    int m_iEditedTabIndex;
+    QLineEdit * m_pTabNameEdit;
+    void startRename(int);
+
+private slots:
+    void finishRename();
 };
 
 /**

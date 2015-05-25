@@ -14,6 +14,7 @@ GGTabBar::GGTabBar(QWidget* parent)
     , m_bDragging(false)
 {
     this->setTabsClosable(true);
+    m_iEditedTabIndex = -1;
 }
 
 GGTabBar::~GGTabBar()
@@ -45,6 +46,45 @@ GGTabBar::mouseReleaseEvent(QMouseEvent* e)
 
     e->ignore(); //The event must go to the GGTabBar parent.
     QTabBar::mouseReleaseEvent(e);
+}
+
+void 
+GGTabBar::mouseDoubleClickEvent(QMouseEvent* e)
+{
+    m_bDragging = false;
+
+    int iTabIndex = tabAt(e->pos());
+    emit tabDoubleClicked(iTabIndex);
+    startRename(iTabIndex);
+}
+
+void
+GGTabBar::startRename(int iTabIndex)
+{
+    static const int c_iVerticalMargin   = 3;
+    static const int c_iHorizontalMargin = 6;
+
+    if (m_iEditedTabIndex != -1) {
+        return;
+    }
+    m_iEditedTabIndex = iTabIndex;
+    QRect currentTabRect = tabRect(iTabIndex);
+    m_pTabNameEdit = new QLineEdit(this);
+    m_pTabNameEdit->show();
+    m_pTabNameEdit->move(currentTabRect.left() + c_iHorizontalMargin, currentTabRect.top() + c_iVerticalMargin);
+    m_pTabNameEdit->resize(currentTabRect.width() - 2 * c_iHorizontalMargin, currentTabRect.height() - 2 * c_iVerticalMargin);
+    m_pTabNameEdit->setText(tabText(iTabIndex));
+    m_pTabNameEdit->selectAll();
+    m_pTabNameEdit->setFocus();
+    connect(m_pTabNameEdit, SIGNAL(editingFinished()), this, SLOT(finishRename()));
+}
+
+void
+GGTabBar::finishRename()
+{
+    setTabText(m_iEditedTabIndex, m_pTabNameEdit->text());
+    m_pTabNameEdit->deleteLater();
+    m_iEditedTabIndex = -1;
 }
 
 /* ------------------------------------------------------------------------- */

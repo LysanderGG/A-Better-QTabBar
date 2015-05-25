@@ -7,9 +7,6 @@
 #include <QScrollBar>
 #include <QTimer>
 
-int GGTabBar::iVerticalMargin = 3;
-int GGTabBar::iHorizontalMargin = 6;
-
 /* ------------------------------------------------------------------------- */
 
 GGTabBar::GGTabBar(QWidget* parent)
@@ -64,6 +61,9 @@ GGTabBar::mouseDoubleClickEvent(QMouseEvent* e)
 void
 GGTabBar::startRename(int iTabIndex)
 {
+    static const int c_iVerticalMargin   = 3;
+    static const int c_iHorizontalMargin = 6;
+
     if (m_iEditedTabIndex != -1) {
         return;
     }
@@ -71,8 +71,8 @@ GGTabBar::startRename(int iTabIndex)
     QRect currentTabRect = tabRect(iTabIndex);
     m_pTabNameEdit = new QLineEdit(this);
     m_pTabNameEdit->show();
-    m_pTabNameEdit->move(currentTabRect.left() + iHorizontalMargin, currentTabRect.top() + iVerticalMargin);
-    m_pTabNameEdit->resize(currentTabRect.width() - 2 * iHorizontalMargin, currentTabRect.height() - 2 * iVerticalMargin);
+    m_pTabNameEdit->move(currentTabRect.left() + c_iHorizontalMargin, currentTabRect.top() + c_iVerticalMargin);
+    m_pTabNameEdit->resize(currentTabRect.width() - 2 * c_iHorizontalMargin, currentTabRect.height() - 2 * c_iVerticalMargin);
     m_pTabNameEdit->setText(tabText(iTabIndex));
     m_pTabNameEdit->selectAll();
     m_pTabNameEdit->setFocus();

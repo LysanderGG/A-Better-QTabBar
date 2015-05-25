@@ -25,8 +25,6 @@ class GGTabBar : public QTabBar
 public:
     GGTabBar(QWidget* parent = nullptr);
     ~GGTabBar();
-    const static int iVerticalMargin;
-    const static int iHorizontalMargin;
 
     inline bool isDragging() { return m_bDragging; }
 

@@ -34,18 +34,21 @@ signals:
     void tabDoubleClicked(int);
 
 protected:
-    virtual void mousePressEvent    (QMouseEvent* e);
-    virtual void mouseMoveEvent     (QMouseEvent* e);
-    virtual void mouseReleaseEvent  (QMouseEvent* e);
+    virtual void mousePressEvent        (QMouseEvent* e);
+    virtual void mouseMoveEvent         (QMouseEvent* e);
+    virtual void mouseReleaseEvent      (QMouseEvent* e);
     virtual void mouseDoubleClickEvent  (QMouseEvent* e);
 
 private:
-    bool m_bDragging;
-    int m_iEditedTabIndex;
-    QLineEdit * m_pTabNameEdit;
     void startRename(int);
 
+private:
+    QLineEdit * m_pTabNameEdit;
+    int m_iEditedTabIndex;
+    bool m_bDragging;
     bool m_bRenameOnDoubleClick;
+
+
 private slots:
     void finishRename();
 };

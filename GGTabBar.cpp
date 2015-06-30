@@ -11,11 +11,12 @@
 
 GGTabBar::GGTabBar(QWidget* parent)
     : QTabBar(parent)
+    , m_pTabNameEdit(nullptr)
+    , m_iEditedTabIndex(-1)
     , m_bDragging(false)
     , m_bRenameOnDoubleClick(true)
 {
     this->setTabsClosable(true);
-    m_iEditedTabIndex = -1;
 }
 
 GGTabBar::~GGTabBar()

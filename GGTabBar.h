@@ -27,6 +27,8 @@ public:
     ~GGTabBar();
 
     inline bool isDragging() { return m_bDragging; }
+    inline bool renameOnDoubleClick() { return m_bRenameOnDoubleClick; }
+    inline void setRenameOnDoubleClick(bool b) { m_bRenameOnDoubleClick = b; }
 
 signals:
     void tabDoubleClicked(int);
@@ -43,6 +45,7 @@ private:
     QLineEdit * m_pTabNameEdit;
     void startRename(int);
 
+    bool m_bRenameOnDoubleClick;
 private slots:
     void finishRename();
 };

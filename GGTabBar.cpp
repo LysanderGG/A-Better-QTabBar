@@ -12,6 +12,7 @@
 GGTabBar::GGTabBar(QWidget* parent)
     : QTabBar(parent)
     , m_bDragging(false)
+    , m_bRenameOnDoubleClick(true)
 {
     this->setTabsClosable(true);
     m_iEditedTabIndex = -1;
@@ -55,7 +56,10 @@ GGTabBar::mouseDoubleClickEvent(QMouseEvent* e)
 
     int iTabIndex = tabAt(e->pos());
     emit tabDoubleClicked(iTabIndex);
-    startRename(iTabIndex);
+
+    if( m_bRenameOnDoubleClick ) {
+        startRename(iTabIndex);
+    }
 }
 
 void

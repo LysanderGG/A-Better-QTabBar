@@ -208,6 +208,7 @@ GGTabBarWidget::GGTabBarWidget(QWidget* parent)
     m_pMenuButton->setMenu(new QMenu(m_pMenuButton));
     m_pMenuButton->hide();
     m_pMenuButton->setStyleSheet("QToolButton::menu-indicator { image: none; }"); //Remove the menu-indicator as there is an image already.
+    m_pMenuButton->menu()->setStyleSheet("QMenu { menu-scrollable: 1; }"); //Makes the Menu scrollable instead of multi-columns
 
     connect(m_pMenuButton,       SIGNAL(clicked()),                this, SLOT(displayMenu()));
     connect(m_pScrollableTabBar, SIGNAL(currentChanged(int)),      this, SLOT(onCurrentChanged(int)));

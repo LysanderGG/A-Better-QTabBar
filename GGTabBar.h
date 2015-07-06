@@ -133,6 +133,7 @@ protected:
     virtual bool eventFilter(QObject* o, QEvent* e);
     virtual void mouseMoveEvent     (QMouseEvent* e);
     virtual void mouseReleaseEvent  (QMouseEvent* e);
+    virtual void resizeEvent        (QResizeEvent* e);
 
 protected slots:
     inline void makeCurrentVisible() { this->makeVisible(m_pTabBar->currentIndex()); }

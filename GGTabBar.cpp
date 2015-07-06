@@ -164,6 +164,13 @@ GGScrollableTabBar::mouseReleaseEvent(QMouseEvent* e)
     QScrollArea::mouseReleaseEvent(e);
 }
 
+void
+GGScrollableTabBar::resizeEvent(QResizeEvent* e)
+{
+    this->makeCurrentVisible();
+    QScrollArea::resizeEvent(e);
+}
+
 /* If the scroll area is smaller that the tab to make visible, ensure that its left part will be at least visible. */
 void 
 GGScrollableTabBar::makeVisible(int index)
